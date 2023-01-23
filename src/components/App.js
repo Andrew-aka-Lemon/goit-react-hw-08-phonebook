@@ -19,25 +19,27 @@ const App = () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route
-          path="/contacts"
-          element={
-            <ContactsContent>
-              <h1>Phonebook</h1>
-              <AddContactForm />
-              <Filter />
-              <Title>Contacts</Title>
-              {loadingMarker && <KindaLoader> is updating...</KindaLoader>}
-              <ListOfContacts />
-            </ContactsContent>
-          }
-        />
+      <ContactsContent>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route
+            path="/contacts"
+            element={
+              <>
+                <h1>Phonebook</h1>
+                <AddContactForm />
+                <Filter />
+                <Title>Contacts</Title>
+                {loadingMarker && <KindaLoader> is updating...</KindaLoader>}
+                <ListOfContacts />
+              </>
+            }
+          />
 
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
-      </Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+        </Routes>
+      </ContactsContent>
     </>
   );
 };
