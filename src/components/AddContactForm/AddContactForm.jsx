@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/contacts/contactsSelectors';
 
 import { ButtonAddFriend, Title } from './AddContactForm.styled';
-import { addContact } from 'services/ContactsAPI';
+import { addContact } from 'redux/contacts/contactsOperations';
 
 const AddContactForm = () => {
   const [name, setName] = useState('');

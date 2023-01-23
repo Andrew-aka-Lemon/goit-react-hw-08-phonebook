@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectFilteredContacts } from 'redux/selectors';
-import { deleteContactById, getAllContacts } from 'services/ContactsAPI';
+import { selectFilteredContacts } from 'redux/contacts/contactsSelectors';
+import {
+  deleteContactById,
+  getAllContacts,
+} from 'redux/contacts/contactsOperations';
 
 import { Lishka, NotUglyBtn } from './ListOfContacts.styled';
 

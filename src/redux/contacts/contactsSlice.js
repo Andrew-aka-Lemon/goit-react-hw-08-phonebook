@@ -3,7 +3,7 @@ import {
   addContact,
   deleteContactById,
   getAllContacts,
-} from 'services/ContactsAPI';
+} from 'redux/contacts/contactsOperations';
 
 const initialState = {
   items: [],
