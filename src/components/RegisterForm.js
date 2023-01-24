@@ -1,32 +1,40 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createNewUser } from 'redux/auth/authOperations';
 import styled from 'styled-components';
 
 export const RegisterForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const submitHandler = e => {
     e.preventDefault();
     const { elements } = e.currentTarget;
-    setName(elements.name);
-    console.log(elements.name);
+
+    const name = elements.name.value;
+    const email = elements.email.value;
+    const password = elements.password.value;
+
+    const newUser = { name, email, password };
+
+    dispatch(createNewUser(newUser));
+
+    e.currentTarget.reset();
   };
+
   return (
     <FancyForm onSubmit={submitHandler}>
       <label>
         Name
-        <input name="name" type="text"></input>
+        <input name="name" type="text" autoComplete="on"></input>
       </label>
       <label>
-        Email <input name="email" type="email"></input>
+        Email <input name="email" type="email" autoComplete="on"></input>
       </label>
 
       <label>
-        Password <input name="password"></input>
+        Password <input name="password" type="password"></input>
       </label>
 
-      <button type="submit"> Register me !</button>
+      <button type="submit"> Register me </button>
     </FancyForm>
   );
 };

@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { logOutUser } from 'redux/auth/authOperations';
 import styled from 'styled-components';
 
 const StyledLink = styled(NavLink)`
@@ -10,6 +12,8 @@ const StyledLink = styled(NavLink)`
 `;
 
 export const Header = () => {
+  const dispatch = useDispatch();
+
   return (
     <FancyHeader>
       <Links>
@@ -20,7 +24,9 @@ export const Header = () => {
 
       <div>
         <p>Hello, Username</p>
-        <button>LogOut</button>
+        <button type="button" onClick={() => dispatch(logOutUser())}>
+          Log Out
+        </button>
       </div>
     </FancyHeader>
   );
