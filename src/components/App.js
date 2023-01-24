@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { selectIsRefreshingUser } from 'redux/auth/authSelectors';
 import { Contacts } from 'pages/Contacts';
+import { PrivateRoute } from 'RouterManager';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,10 @@ const App = () => {
         {!userRefresh ? (
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/contacts" element={<Contacts />} />
+            <Route
+              path="/contacts"
+              element={<PrivateRoute component={<Contacts />} />}
+            />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
           </Routes>
