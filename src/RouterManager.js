@@ -8,3 +8,9 @@ export const PrivateRoute = ({ component: Component }) => {
 
   return shouldRedirect ? <Navigate to="/login" /> : Component;
 };
+
+export const PublickRoute = ({ component: Component }) => {
+  const logedIn = useSelector(selectIsLogedIn);
+
+  return logedIn ? <Navigate to="/contacts" /> : Component;
+};

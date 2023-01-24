@@ -22,9 +22,14 @@ export const Header = () => {
   return (
     <FancyHeader>
       <Links>
-        <StyledLink to="/register">Registration</StyledLink>
-        <StyledLink to="/login">LogIn</StyledLink>
-        <StyledLink to="/contacts">MyContacts</StyledLink>
+        <StyledLink to="/">Home</StyledLink>
+        {!isLogedIn && (
+          <>
+            <StyledLink to="/register">Registration</StyledLink>
+            <StyledLink to="/login">LogIn</StyledLink>
+          </>
+        )}
+        {isLogedIn && <StyledLink to="/contacts">MyContacts</StyledLink>}
       </Links>
 
       {isLogedIn && (
@@ -45,6 +50,8 @@ const FancyHeader = styled.header`
   align-items: center;
 
   padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
 
   height: 100px;
 `;

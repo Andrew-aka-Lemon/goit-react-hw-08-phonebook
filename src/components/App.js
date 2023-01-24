@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { selectIsRefreshingUser } from 'redux/auth/authSelectors';
 import { Contacts } from 'pages/Contacts';
-import { PrivateRoute } from 'RouterManager';
+import { PrivateRoute, PublickRoute } from 'RouterManager';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,8 +31,14 @@ const App = () => {
               path="/contacts"
               element={<PrivateRoute component={<Contacts />} />}
             />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<RegisterForm />} />
+            <Route
+              path="/login"
+              element={<PublickRoute component={<LoginForm />} />}
+            />
+            <Route
+              path="/register"
+              element={<PublickRoute component={<RegisterForm />} />}
+            />
           </Routes>
         ) : (
           <div>Loading your account data...</div>
