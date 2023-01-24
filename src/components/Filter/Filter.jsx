@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterSlice } from 'redux/filter/filerSlice';
 import { getFilter } from 'redux/contacts/contactsSelectors';
 
-const Filter = () => {
+export const Filter = () => {
   const { changeFilter } = filterSlice.actions;
 
   const dispatch = useDispatch();
@@ -32,5 +32,3 @@ const Title = styled.p`
   margin: 0;
   margin-top: 10px;
 `;
-
-export default Filter;

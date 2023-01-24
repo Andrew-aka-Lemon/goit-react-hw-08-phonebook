@@ -1,50 +1,44 @@
 import styled from 'styled-components';
 
-import AddContactForm from './AddContactForm';
-import ListOfContacts from './ListOfContacts';
-import Filter from './Filter';
 import { Home } from './Home';
 import { Header } from './Header';
-import { RegisterForm } from './RegisterForm';
-import { LoginForm } from './LoginForm';
+import { RegisterForm } from 'pages/RegisterForm';
+import { LoginForm } from 'pages/LoginForm';
 
-import { Title } from './AddContactForm/AddContactForm.styled';
-import { useSelector } from 'react-redux';
-import { isLoading } from 'redux/contacts/contactsSelectors';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { selectIsRefreshingUser } from 'redux/auth/authSelectors';
+import { Contacts } from 'pages/Contacts';
 
 const App = () => {
-  const loadingMarker = useSelector(isLoading);
+  const dispatch = useDispatch();
+
+  const userRefresh = useSelector(selectIsRefreshingUser);
+
+  // useEffect(() => {
+  //   dispatch(refreshUserData());
+  // }, [dispatch]);
 
   return (
     <>
       <Header />
-      <ContactsContent>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route
-            path="/contacts"
-            element={
-              <>
-                <h1>Phonebook</h1>
-                <AddContactForm />
-                <Filter />
-                <Title>Contacts</Title>
-                {loadingMarker && <KindaLoader> is updating...</KindaLoader>}
-                <ListOfContacts />
-              </>
-            }
-          />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
-        </Routes>
-      </ContactsContent>
+      <Wrapper>
+        {!userRefresh ? (
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegisterForm />} />
+          </Routes>
+        ) : (
+          <div>Loading your account data...</div>
+        )}
+      </Wrapper>
     </>
   );
 };
 
-const ContactsContent = styled.div`
-  /* margin-top: 50px; */
+const Wrapper = styled.div`
   margin-left: 30%;
   font-size: 20px;
   color: #010101;
@@ -53,11 +47,6 @@ const ContactsContent = styled.div`
     margin: 0;
     padding: 0;
   }
-`;
-
-const KindaLoader = styled.b`
-  position: absolute;
-  transform: translate(110px, -31px);
 `;
 
 export { App };

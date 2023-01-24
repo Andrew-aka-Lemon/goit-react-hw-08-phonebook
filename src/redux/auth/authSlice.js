@@ -32,6 +32,14 @@ export const authSlice = createSlice({
       state.token = null;
       state.isLogedIn = false;
     },
-    [refreshUserData.pending]() {},
+    [refreshUserData.pending](state) {
+      state.isFetchingCurrentUser = true;
+    },
+    [refreshUserData.fulfilled](state) {
+      state.isFetchingCurrentUser = false;
+    },
+    [refreshUserData.rejected](state) {
+      state.isFetchingCurrentUser = false;
+    },
   },
 });

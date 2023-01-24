@@ -7,7 +7,7 @@ import { getContacts } from 'redux/contacts/contactsSelectors';
 import { ButtonAddFriend, Title } from './AddContactForm.styled';
 import { addContact } from 'redux/contacts/contactsOperations';
 
-const AddContactForm = () => {
+export const AddContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -78,5 +78,3 @@ const AddContactForm = () => {
     </form>
   );
 };
-
-export default AddContactForm;

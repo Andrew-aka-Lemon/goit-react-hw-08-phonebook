@@ -9,7 +9,7 @@ import {
 
 import { Lishka, NotUglyBtn } from './ListOfContacts.styled';
 
-const ListOfContacts = () => {
+export const ListOfContacts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,5 +41,3 @@ const ListOfContacts = () => {
     </div>
   );
 };
-
-export default ListOfContacts;
