@@ -7,10 +7,10 @@ import { selectIsRefreshingUser } from 'redux/auth/authSelectors';
 import { refreshUserData } from 'redux/auth/authOperations';
 import { Layout } from 'pages/SharedLayout';
 
-const Home = lazy(() => import('pages/Home'));
 const RegisterForm = lazy(() => import('pages/RegisterForm'));
 const LoginForm = lazy(() => import('pages/LoginForm'));
 const Contacts = lazy(() => import('pages/Contacts'));
+const Home = lazy(() => import('pages/Home'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,30 +21,26 @@ const App = () => {
     dispatch(refreshUserData());
   }, [dispatch]);
 
-  return (
-    <Layout>
-      {!userRefresh ? (
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route
-              path="/contacts"
-              element={<PrivateRoute component={<Contacts />} />}
-            />
-            <Route
-              path="/login"
-              element={<PublickRoute component={<LoginForm />} />}
-            />
-            <Route
-              path="/register"
-              element={<PublickRoute component={<RegisterForm />} />}
-            />
-          </Route>
-        </Routes>
-      ) : (
-        <div>Loading your account data...</div>
-      )}
-    </Layout>
+  return !userRefresh ? (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="/contacts"
+          element={<PrivateRoute component={<Contacts />} />}
+        />
+        <Route
+          path="/login"
+          element={<PublickRoute component={<LoginForm />} />}
+        />
+        <Route
+          path="/register"
+          element={<PublickRoute component={<RegisterForm />} />}
+        />
+      </Route>
+    </Routes>
+  ) : (
+    <div>Loading your account data...</div>
   );
 };
 

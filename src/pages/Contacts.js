@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 const { Title } = require('components/AddContactForm/AddContactForm.styled');
 
-export const Contacts = () => {
+const Contacts = () => {
   const loadingMarker = useSelector(isLoading);
 
   return (
@@ -26,3 +26,5 @@ const KindaLoader = styled.b`
   position: absolute;
   transform: translate(110px, -31px);
 `;
+
+export default Contacts;

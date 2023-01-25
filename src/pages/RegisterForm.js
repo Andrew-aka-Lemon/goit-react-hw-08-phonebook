@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { createNewUser } from 'redux/auth/authOperations';
 import styled from 'styled-components';
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const submitHandler = e => {
@@ -46,3 +46,5 @@ const FancyForm = styled.form`
   flex-wrap: wrap;
   gap: 15px;
 `;
+
+export default RegisterForm;

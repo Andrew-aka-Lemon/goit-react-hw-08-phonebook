@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/auth/authOperations';
 import styled from 'styled-components';
 
-export const LoginForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
 
   const submitHandler = e => {
@@ -42,3 +42,5 @@ const FancyForm = styled.form`
   flex-wrap: wrap;
   gap: 15px;
 `;
+
+export default LoginForm;
