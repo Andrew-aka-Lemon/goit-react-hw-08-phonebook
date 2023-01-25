@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { selectIsRefreshingUser } from 'redux/auth/authSelectors';
 import { Contacts } from 'pages/Contacts';
-import { PrivateRoute, PublickRoute } from 'RouterManager';
+import { PrivateRoute, PublickRoute } from 'components/RouterManager';
 
 const App = () => {
   const dispatch = useDispatch();
