@@ -10,15 +10,17 @@ import { Route, Routes } from 'react-router-dom';
 import { selectIsRefreshingUser } from 'redux/auth/authSelectors';
 import { Contacts } from 'pages/Contacts';
 import { PrivateRoute, PublickRoute } from 'components/RouterManager';
+import { useEffect } from 'react';
+import { refreshUserData } from 'redux/auth/authOperations';
 
 const App = () => {
   const dispatch = useDispatch();
 
   const userRefresh = useSelector(selectIsRefreshingUser);
 
-  // useEffect(() => {
-  //   dispatch(refreshUserData());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUserData());
+  }, [dispatch]);
 
   return (
     <>
