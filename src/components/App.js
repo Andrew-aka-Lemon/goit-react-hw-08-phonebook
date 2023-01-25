@@ -1,17 +1,16 @@
-import styled from 'styled-components';
-
-import { Home } from './Home';
-import { Header } from './Header';
-import { RegisterForm } from 'pages/RegisterForm';
-import { LoginForm } from 'pages/LoginForm';
-
+import { useEffect, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { selectIsRefreshingUser } from 'redux/auth/authSelectors';
-import { Contacts } from 'pages/Contacts';
+
 import { PrivateRoute, PublickRoute } from 'components/RouterManager';
-import { useEffect } from 'react';
+import { selectIsRefreshingUser } from 'redux/auth/authSelectors';
 import { refreshUserData } from 'redux/auth/authOperations';
+import { Layout } from 'pages/SharedLayout';
+
+const Home = lazy(() => import('pages/Home'));
+const RegisterForm = lazy(() => import('pages/RegisterForm'));
+const LoginForm = lazy(() => import('pages/LoginForm'));
+const Contacts = lazy(() => import('pages/Contacts'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,12 +22,11 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Header />
-      <Wrapper>
-        {!userRefresh ? (
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
+    <Layout>
+      {!userRefresh ? (
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
             <Route
               path="/contacts"
               element={<PrivateRoute component={<Contacts />} />}
@@ -41,24 +39,13 @@ const App = () => {
               path="/register"
               element={<PublickRoute component={<RegisterForm />} />}
             />
-          </Routes>
-        ) : (
-          <div>Loading your account data...</div>
-        )}
-      </Wrapper>
-    </>
+          </Route>
+        </Routes>
+      ) : (
+        <div>Loading your account data...</div>
+      )}
+    </Layout>
   );
 };
-
-const Wrapper = styled.div`
-  margin-left: 30%;
-  font-size: 20px;
-  color: #010101;
-
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-`;
 
 export { App };

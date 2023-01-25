@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { logOutUser } from 'redux/auth/authOperations';
 import { selectIsLogedIn, selectUserName } from 'redux/auth/authSelectors';
-import styled from 'styled-components';
 
 const StyledLink = styled(NavLink)`
   color: black;
